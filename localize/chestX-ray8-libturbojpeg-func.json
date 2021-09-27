@@ -1,0 +1,257 @@
+{
+  "<encode_mcu_huff>:": [
+    "e0fd",
+    "a119",
+    "e048",
+    "11048",
+    "13f94",
+    "14f94",
+    "a037",
+    "d033",
+    "13033"
+  ],
+  "<write_file_header>:": [
+    "170fd",
+    "1716c"
+  ],
+  "<int_downsample>:": [
+    "1d0fd",
+    "1d0d1",
+    "1d033"
+  ],
+  "<decode_mcu>:": [
+    "290fd",
+    "29119",
+    "290d1",
+    "29048",
+    "2a048",
+    "28f94",
+    "28f87",
+    "29f87",
+    "29160",
+    "2a160",
+    "29037",
+    "29033"
+  ],
+  "<jpeg_idct_11x11>:": [
+    "3a0fd"
+  ],
+  "<jpeg_idct_13x13>:": [
+    "3b0fd",
+    "3b048"
+  ],
+  "<color_quantize>:": [
+    "3d0fd"
+  ],
+  "<jtransform_execute_transform>:": [
+    "520fd",
+    "580fd",
+    "58119",
+    "5a119",
+    "530d1",
+    "580d1",
+    "52048",
+    "57f94",
+    "58f94",
+    "50f87",
+    "51f87",
+    "56160",
+    "5a160",
+    "56b62",
+    "56033",
+    "57033",
+    "58033",
+    "59033"
+  ],
+  "<read_pbm_integer>:": [
+    "5e0fd"
+  ],
+  "<jsimd_idct_ifast>:": [
+    "740fd"
+  ],
+  "<jpeg_start_compress>:": [
+    "3119"
+  ],
+  "<jinit_color_converter>:": [
+    "7119",
+    "716c"
+  ],
+  "<start_pass_main>:": [
+    "2c119"
+  ],
+  "<read_markers>:": [
+    "2e119"
+  ],
+  "<jinit_merged_upsampler>:": [
+    "33119"
+  ],
+  "<decode_mcu_DC_first>:": [
+    "34119"
+  ],
+  "<jinit_arith_decoder>:": [
+    "46119"
+  ],
+  "<tjDecodeYUVPlanes>:": [
+    "4c119"
+  ],
+  "<tjDecompressToYUVPlanes>:": [
+    "4e119",
+    "4e033"
+  ],
+  "<rgb_rgb_convert>:": [
+    "60d1",
+    "25160",
+    "5b62"
+  ],
+  "<jinit_marker_writer>:": [
+    "180d1"
+  ],
+  "<jinit_c_master_control>:": [
+    "190d1",
+    "19160"
+  ],
+  "<access_virt_barray>:": [
+    "410d1",
+    "40f87",
+    "41033"
+  ],
+  "<start_input_ppm>:": [
+    "5f0d1",
+    "5ef87"
+  ],
+  "<jsimd_idct_islow_sse2>:": [
+    "6a0d1"
+  ],
+  "<jsimd_idct_islow>:": [
+    "740d1"
+  ],
+  "<compress_data>:": [
+    "4048",
+    "4033"
+  ],
+  "<start_pass_fdctmgr>:": [
+    "9048"
+  ],
+  "<rgb_rgb565D_convert>:": [
+    "26048",
+    "26037",
+    "26033"
+  ],
+  "<jpeg_make_d_derived_tbl>:": [
+    "28048",
+    "28160",
+    "2816c",
+    "28033"
+  ],
+  "<jpeg_calc_output_dimensions>:": [
+    "2f048"
+  ],
+  "<h2v1_fancy_upsample>:": [
+    "35048"
+  ],
+  "<output_message>:": [
+    "36048"
+  ],
+  "<arith_decode>:": [
+    "45048"
+  ],
+  "<tjPlaneSizeYUV>:": [
+    "47048"
+  ],
+  "<get_8bit_row>:": [
+    "5c048",
+    "5bf94"
+  ],
+  "<start_input_bmp>:": [
+    "5cf94"
+  ],
+  "<consume_data>:": [
+    "20f87"
+  ],
+  "<rgb_rgb565_convert>:": [
+    "25f87"
+  ],
+  "<start_input_pass>:": [
+    "2af87",
+    "2b037"
+  ],
+  "<jpeg_idct_islow>:": [
+    "37f87"
+  ],
+  "<jpeg_idct_10x10>:": [
+    "39f87"
+  ],
+  "<pass2_fs_dither>:": [
+    "3ff87"
+  ],
+  "<tjEncodeYUV>:": [
+    "48f87"
+  ],
+  "<jsimd_idct_islow_avx2.column_end>:": [
+    "72f87"
+  ],
+  "<jsimd_idct_4x4>:": [
+    "73f87"
+  ],
+  "<finish_pass_huff>:": [
+    "15160",
+    "1516c"
+  ],
+  "<compress_output>:": [
+    "1e160",
+    "1e037"
+  ],
+  "<jpeg_consume_input>:": [
+    "1f160"
+  ],
+  "<jinit_master_decompress>:": [
+    "30160"
+  ],
+  "<h2v2_merged_upsample>:": [
+    "32160"
+  ],
+  "<realize_virt_arrays>:": [
+    "42160"
+  ],
+  "<tjDecompressHeader3>:": [
+    "4a160"
+  ],
+  "<put_pixel_rows>:": [
+    "60160",
+    "6016c"
+  ],
+  "<jpeg_fill_bit_buffer>:": [
+    "28b62"
+  ],
+  "<start_pass>:": [
+    "44b62",
+    "2716c"
+  ],
+  "<jsimd_ycc_extrgbx_convert_sse2.column_st16>:": [
+    "65b62"
+  ],
+  "<jsimd_h2v2_downsample_avx2.downsample>:": [
+    "6eb62"
+  ],
+  "<gray_rgb_convert>:": [
+    "2316c"
+  ],
+  "<arith_encode>:": [
+    "4316c"
+  ],
+  "<jsimd_h2v1_extrgbx_merged_upsample_sse2>:": [
+    "6716c"
+  ],
+  "<jsimd_h2v1_extxbgr_merged_upsample_sse2.column_st15>:": [
+    "68037"
+  ],
+  "<jpeg_simple_progression>:": [
+    "1a033"
+  ],
+  "<jinit_write_bmp>:": [
+    "60033"
+  ],
+  "<jsimd_h2v1_fancy_upsample_avx2>:": [
+    "72033"
+  ]
+}

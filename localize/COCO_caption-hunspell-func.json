@@ -1,0 +1,75 @@
+{
+  "<_Z5existPKc>:": [
+    "6d48",
+    "6cb6"
+  ],
+  "<_Z14pipe_interfacePP8HunspelliP8_IO_FILEPc>:": [
+    "ad48",
+    "94b2",
+    "b3de",
+    "a1e0",
+    "a908",
+    "b908",
+    "aca0",
+    "b243"
+  ],
+  "<_Z10get_parseriPKcP8Hunspell>:": [
+    "848b",
+    "8482",
+    "8688"
+  ],
+  "<main>:": [
+    "53de",
+    "5350",
+    "55d0",
+    "4ca3",
+    "5a02"
+  ],
+  "<_Z5chencRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPKcS8_>:": [
+    "63de",
+    "6420",
+    "63e3"
+  ],
+  "<_ZNSt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EE17_M_realloc_insertIJRKS5_EEEvN9__gnu_cxx17__normal_iteratorIPS5_S7_EEDpOT_>:": [
+    "c3de"
+  ],
+  "<_ZN9ODFParserC1EPKc>:": [
+    "10350"
+  ],
+  "<_ZSt16__insertion_sortIN9__gnu_cxx17__normal_iteratorIP6w_charSt6vectorIS2_SaIS2_EEEENS0_5__ops15_Iter_less_iterEEvT_SA_T0_>:": [
+    "c5de"
+  ],
+  "<_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_M_constructIPKcEEvT_S8_St20forward_iterator_tag.isra.52>:": [
+    "6230"
+  ],
+  "<_ZN10TextParser10check_urlsEv>:": [
+    "f597",
+    "f482",
+    "f688",
+    "f3e3"
+  ],
+  "<_ZN10HTMLParser10next_tokenERNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE>:": [
+    "101ee"
+  ],
+  "<_ZNKSt5ctypeIcE8do_widenEc>:": [
+    "c1e0"
+  ],
+  "<_ZN10TextParser4initEPKc>:": [
+    "f1e0"
+  ],
+  "<_Z5checkPP8HunspellPiRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES2_PS8_>:": [
+    "73d0"
+  ],
+  "<_ZN10TextParser10get_latin1EPKc.part.14>:": [
+    "e3e4"
+  ],
+  "<_ZSt16__introsort_loopIN9__gnu_cxx17__normal_iteratorIP6w_charSt6vectorIS2_SaIS2_EEEElNS0_5__ops15_Iter_less_iterEEvT_SA_T0_T1_.isra.89>:": [
+    "7a02"
+  ],
+  "<_ZN10TextParser11alloc_tokenEmPmRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE>:": [
+    "ed8b"
+  ],
+  "<_ZN9XMLParser10next_tokenEPA2_PKcjS3_jS3_jRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE>:": [
+    "d243"
+  ]
+}

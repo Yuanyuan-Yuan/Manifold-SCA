@@ -1,0 +1,15 @@
+{
+  "<_Z14pipe_interfacePP8HunspelliP8_IO_FILEPc>:": 769,
+  "<_Z10get_parseriPKcP8Hunspell>:": 480,
+  "<main>:": 216,
+  "<_ZN10TextParser10check_urlsEv>:": 178,
+  "<_Z6putdicRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP8Hunspell>:": 168,
+  "<_ZN10TextParser4initEPK6w_chari>:": 106,
+  "<_ZNSt6vectorIiSaIiEE14_M_fill_insertEN9__gnu_cxx17__normal_iteratorIPiS1_EEmRKi>:": 106,
+  "<_ZN9XMLParser12change_tokenEPKc>:": 89,
+  "<_Z5chencRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPKcS8_>:": 81,
+  "<_Z6exist2PciPKcS1_>:": 70,
+  "<_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_M_constructIPKcEEvT_S8_St20forward_iterator_tag.isra.52>:": 69,
+  "<_ZN9XMLParserD0Ev>:": 30,
+  "<_ZNSt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EED1Ev>:": 29
+}
