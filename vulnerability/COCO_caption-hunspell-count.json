@@ -1,0 +1,20 @@
+{
+  "<_Z14pipe_interfacePP8HunspelliP8_IO_FILEPc>:": 564,
+  "<main>:": 362,
+  "<_Z10get_parseriPKcP8Hunspell>:": 306,
+  "<_ZN10TextParser10check_urlsEv>:": 266,
+  "<_Z5chencRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPKcS8_>:": 193,
+  "<_Z5existPKc>:": 145,
+  "<_ZNSt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EE17_M_realloc_insertIJRKS5_EEEvN9__gnu_cxx17__normal_iteratorIPS5_S7_EEDpOT_>:": 123,
+  "<_ZN9ODFParserC1EPKc>:": 110,
+  "<_ZSt16__insertion_sortIN9__gnu_cxx17__normal_iteratorIP6w_charSt6vectorIS2_SaIS2_EEEENS0_5__ops15_Iter_less_iterEEvT_SA_T0_>:": 110,
+  "<_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE12_M_constructIPKcEEvT_S8_St20forward_iterator_tag.isra.52>:": 93,
+  "<_ZNKSt5ctypeIcE8do_widenEc>:": 80,
+  "<_ZN10TextParser4initEPKc>:": 80,
+  "<_Z5checkPP8HunspellPiRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES2_PS8_>:": 79,
+  "<_ZN10HTMLParser10next_tokenERNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE>:": 71,
+  "<_ZN10TextParser10get_latin1EPKc.part.14>:": 35,
+  "<_ZSt16__introsort_loopIN9__gnu_cxx17__normal_iteratorIP6w_charSt6vectorIS2_SaIS2_EEEElNS0_5__ops15_Iter_less_iterEEvT_SA_T0_T1_.isra.89>:": 28,
+  "<_ZN10TextParser11alloc_tokenEmPmRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE>:": 28,
+  "<_ZN9XMLParser10next_tokenEPA2_PKcjS3_jS3_jRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE>:": 28
+}
