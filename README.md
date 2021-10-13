@@ -21,19 +21,28 @@ TBA.
 
 ## Requirements
 
-- To build from source code, install following requirements:
+- To build from source code, install following requirements.
 
     ```setup
     pip install torch==1.4.0
     pip install torchvision==0.5.0
     pip install numpy==1.18.5
     pip install pillow==7.2.0
-    pip install opencv-python==4.4.0
+    pip install opencv-python
     pip install scipy==1.5.0
     pip install matplotlib==3.2.2
     pip install librosa==0.7.2
     ```
-
+  
+  Then type
+  
+  ```bash
+  git clone https://github.com/Yuanyuan-Yuan/Manifold-SCA
+  cd Manifold-SCA
+  export MANIFOLD_SCA=$PWD
+  ```
+  
+  
 - We also provide a docker image [here](). If you would like to build this repo from docker, see [here]() and skip the following steps.
 
 ## 1. Datasets
@@ -45,7 +54,7 @@ Download the CelebA dataset from [here](https://mmlab.ie.cuhk.edu.hk/projects/Ce
 After downloading the dataset, go to `tool`. Then run
 
 ```bash
-python crop_celeba.py --input_dir='/path/to/unzipped_images' --output_dir='/path/to/cropped_images'
+python crop_celeba.py --input_dir="/path/to/unzipped_images" --output_dir="/path/to/cropped_images"
 ```
 
 to crop all images to size of `128*128`. We provide several examples in `data/CelebA_crop128`.
@@ -57,7 +66,7 @@ Download the ChestX-ray dataset from [here](https://stanfordmlgroup.github.io/co
 After downloading the dataset, go to `tool`. Then run
 
 ```bash
-python resize_chest.py --input_dir='/path/to/unzipped_images' --output_dir='/path/to/resized_images'
+python resize_chest.py --input_dir="/path/to/unzipped_images" --output_dir="/path/to/resized_images"
 ```
 
 to convert all images to JPEG format and resize them to size of `128*128`. We provide several examples in `data/ChestX-ray_jpg128`.
@@ -69,7 +78,7 @@ Download the SC09 dataset from [here](https://www.kaggle.com/rahulbhalley/sc09-s
 We process audios in the Log-amplitude of Mel Spectrum (LMS) form, which is a 2D representation. Once the dataset is downloaded, go to `tool` and run
 
 ```bash
-python audio2lms.py --input_dir='/path/to/audios' --output_dir='/path/to/lms'
+python audio2lms.py --dataset="{SC09} or {Sub-URMP}" --input_dir="/path/to/audios" --output_dir="/path/to/lms"
 ```
 
 to covert all audios to their LMS representations. Several examples are provided in `data/SC09_lms` and `data/Sub-URMP_lms` respectively.
@@ -83,7 +92,7 @@ Download DailyDialog dataset from [here](http://yanran.li/dailydialog.html). Aft
 Once the sentences are prepared, you need to build the corresponding vocabulary. Go to `tool` and run
 
 ```bash
-python build_vocab.py input_dir='/path/to/sentences' --output_dir='/path/to/vocabulary' --freq=minimal_word_frequency
+python build_vocab.py input_path="/path/to/sentences.json" --output_path="/path/to/vocabulary.json" --freq=minimal_word_frequency
 ```
 
 to build the vocabulary. We provide our vocabularies in `data/COCO_caption/vocab_freq5.json` and `data/DailyDialog/vocab_freq5.json`.
@@ -103,7 +112,7 @@ We analysis three common side channels, namely, cache bank, cache line and page 
 
 We use [Intel Pin](https://software.intel.com/content/www/us/en/develop/articles/pin-a-dynamic-binary-instrumentation-tool.html) (Ver. 3.11) to collect the accessed memory addresses of the target software when processing media data.
 
-We provide our pintool in `pin/pintool/mem_access.cpp`. Download Pin from [here](https://software.intel.com/content/www/us/en/develop/articles/pin-a-binary-instrumentation-tool-downloads.html) and unzip it to `PIN_ROOT`.
+We provide our pintool in `pin/pintool/mem_access.cpp`. Download Pin from [here](https://software.intel.com/content/www/us/en/develop/articles/pin-a-binary-instrumentation-tool-downloads.html) and unzip it to `PIN_ROOT` (specify this path by yourself).
 
 To prepare accessed memory addresses of libjpeg when processing CelebA images, first put `pin/pintool/mem_access.cpp` into `/PIN_ROOT/source/tools/ManualExamples/` and run
 
@@ -117,12 +126,13 @@ to compile the pintool. Before collect the memory address, remember to run
 setarch $(uname -m) -R /bin/bash
 ```
 
-in your bash to disable ASLR. In face, the ASLR does not affect our approach, so you can also drop the randomized bits of collected memory address.
+in your bash to disable ASLR. In fact, the ASLR does not affect our approach, so you can also drop the randomized bits of collected memory address.
 
 Then put `pin/prep_celeba.py` into `/PIN_ROOT/source/tools/ManualExamples/` and set the following variables:
 - `input_dir` - Directory of media data.
 - `npz_dir` - Directory where the accessed memory addresses will be saved. Addresses of each media data will be saved in `.npz` format.
 - `raw_dir` - Directory where the raw output of our pintool will be saved. These files will be used for localize side channel vulnerabilities.
+- `libjpeg_path` - Path to the executable file of libjpeg.
 
 You can speed up the progress by running multiple processes. Go to `/PIN_ROOT/source/tools/ManualExamples/` and simply set variable `total_num` in `*.py` to the number of processes and run
 
@@ -175,15 +185,15 @@ You need to frist customize following data directories in `code/data_path.json`.
 To approximate the manifold of face photos from cache line indexes, go to `code` and run
 
 ```bash
-python recons_image.py --exp_name='CelebA_cacheline' --dataset='CelebA' --side='cacheline' 
+python recons_image.py --exp_name="CelebA_cacheline" --dataset="CelebA" --side="cacheline" 
 ```
 
-The `recons_image.py` script approximates manifold using the `train` split of CelebA dataset and ends within 24 hours on one Nvidia GeForce RTX 2080 GPU. Outputs (e.g., trained models, logs) will by default be saved in `output/CelebA_cacheline`. You can customize the output directory by setting `--output_root='/path/to/output/'`. The procedure is same for other media data (i.e., audio, text).
+The `recons_image.py` script approximates manifold using the `train` split of CelebA dataset and ends within 24 hours on one Nvidia GeForce RTX 2080 GPU. Outputs (e.g., trained models, logs) will by default be saved in `output/CelebA_cacheline`. You can customize the output directory by setting `--output_root="/path/to/output/"`. The procedure is same for other media data (i.e., audio, text).
 
 Once the desired manifold is constructed, run
 
 ```bash
-python output.py --exp_name='CelebA_cacheline' --dataset='CelebA' --side='cacheline'
+python output.py --exp_name="CelebA_cacheline" --dataset="CelebA" --side="cacheline"
 ```
 
 to reconstruct unknown face photos (i.e., the `test` split). The reconstructed face photos will by default be saved in `output/CelebA_cacheline/recons/`. This procedure is also same for audio and text data.
@@ -191,17 +201,23 @@ to reconstruct unknown face photos (i.e., the `test` split). The reconstructed f
 We use [Face++](https://www.faceplusplus.com/) to assess the similarity of ID between reconstructed and reference face photos. The online service is free at the time of writing so you can register your own account. The set the `key` and `secret` variables in `code/face_similarity.py` and run
 
 ```bash
-python face_similarity.py --recons_dir='output/CelebA_cacheline/recons/' --target_dir='output/CelebA_cacheline/target/'
+python face_similarity.py --recons_dir="../output/CelebA_cacheline/recons/" --target_dir="../output/CelebA_cacheline/target/" --output_path="../output/CelebA_cacheline/simillarity.txt"
 ```
 
 The results will by default be saved in `output/CelebA_cacheline/simillarity.txt`.
 
 For ChestX-ray images, we use this [tool](https://github.com/jfhealthcare/Chexpert) to check the consistency between disease information of reconstructed reference images.
 
+You can also evaluate the similarity between reconstructed and reference images by running `tool/SSIM.py`.
+
+```bash
+python SSIM.py --K=1 --N=100 --recons_dir="../output/CelebA_cacheline/recons/" --target_dir="../output/CelebA_cacheline/target/" --output_path="../output/CelebA_cacheline/SSIM.txt"
+```
+
 The evaluation methods of audio data and text data are implemented in `code/recons_audio.py` and `code/recons_text.py` respectively. Note that the reconstructed audios are in the LMS representation, to get the raw audio (i.e., `.wav` format), run
 
 ```bash
-python lms2audio.py --input_dir='/path/to/lms' --output_dir='/path/to/wav'
+python lms2audio.py --input_dir="/path/to/lms" --output_dir="/path/to/wav"
 ```
 
 If you want to use your customrized dataset, write your dataset class in `code/data_loader.py`.
@@ -223,7 +239,7 @@ First customize the following variables in `code/data_path.json`.
 Then go to `code` and run.
 
 ```bash
-python localize.py --exp_name='CelebA_cacheline' --dataset='CelebA' --side='cacheline'
+python localize.py --exp_name="CelebA_cacheline" --dataset="CelebA" --side="cacheline"
 ```
 
 The output `.json` file will be saved in `output/CelebA_cacheline/localize`. The results are organized as
@@ -247,13 +263,13 @@ We provid the blinding masks and blinded media data [here]().
 To blind media data, go to `code` and run
 
 ```bash
-python blind_add.py --mask_path='/path/to/mask' --input_dir='/path/to/media_data' --output_dir='/path/to/blinded_data'
+python blind_add.py --meida="{image} or {audio} or {text}" --mask_weight=0.9 --mask="{mask_word} or {/path/to/mask_image_or_audio}" --input_dir="{/path/to/text.json} or {/foler/of/image_or_audio/}" --output_dir="{/path/to/text.json} or {/foler/of/image_or_audio/}"
 ```
 
 To unblind media data, run
 
 ```bash
-python blind_subtract.py --mask_path='/path/to/mask' --input_dir='/path/to/blinded_data' --output_dir='/path/to/recovered_data'
+python blind_subtract.py --meida="{image} or {audio} or {text}" --mask_weight=0.9 --mask="{mask_word} or {/path/to/mask_image_or_audio}" --input_dir="{/path/to/text.json} or {/foler/of/image_or_audio/}" --output_dir="{/path/to/text.json} or {/foler/of/image_or_audio/}"
 ```
 
 ## 6. Attack with Prime+Probe
@@ -307,21 +323,21 @@ First customize the following variables in `code/data_path.json`.
 Then run
 
 ```bash
-python pp_image.py --exp_name='CelebA_pp' --dataset='CelebA' --cpu='intel' --cache='dcache'
+python pp_image.py --exp_name="CelebA_pp" --dataset="CelebA" --cpu="intel" --cache="dcache"
 ```
 
 to approximate the manifold. To reconstruct unknonw images from the collected cache set accesses, uncomment
 
 ```python
-engine.load_model(args.ckpt_root + 'final.pth')
-engine.inference(test_loader, 'test')
+engine.load_model(args.ckpt_root + "final.pth")
+engine.inference(test_loader, "test")
 ```
 
 in `pp_image.py`. The reconstructed images will be saved in `output/CelebA_pp/recons`. Follow the same procedure for other media data.
 
 ## 7. Noise Resilience
 
-We have the following noise insertion schemes.
+We have the following noise insertion schemes (see more details in our paper).
 
 | Pin logged trace | Prime+Probe logged trace |
 |  :----:  | :----: |
@@ -332,7 +348,7 @@ We have the following noise insertion schemes.
 To insert the "shifting" noise into pin logged trace, go to `code` and run
 
 ```bash
-python output_noise.py --exp_name='CelebA_cacheline' --dataset='CelebA' --side='cacheline' --noise_op='shift' --noise_k=100
+python output_noise.py --exp_name="CelebA_cacheline" --dataset="CelebA" --side="cacheline" --noise_op="shift" --noise_k=100
 ```
 
 Images reconstructed from noisy cache line records will be saved in `output/CelebA_cacheline/recons_noise` by default.
@@ -340,20 +356,20 @@ Images reconstructed from noisy cache line records will be saved in `output/Cele
 To insert the "wrong order" noise into prime+probe logged trace, you need to modify `code/pp_image.py` as
 
 ```python
-# test_dataset = RealSideDataset(args, split=args.data_path[args.dataset]['split'][1])
-test_dataset = NoisyRealSideDataset(args, split=args.data_path[args.dataset]['split'][1])
+# test_dataset = RealSideDataset(args, split=args.data_path[args.dataset]["split"][1])
+test_dataset = NoisyRealSideDataset(args, split=args.data_path[args.dataset]["split"][1])
 ```
 
 and uncomment
 
 ```python
-engine.load_model(args.ckpt_root + 'final.pth')
-engine.inference(test_loader, 'test')
+engine.load_model(args.ckpt_root + "final.pth")
+engine.inference(test_loader, "test")
 ```
 
 to reconstruct unknown images from noisy side channel records.
 
-Note that in order to assess the noise resilience, you should **NOT** approximate manifold (i.e., training) using the noisy side channel. The procedure is same for other media data.
+The procedure is same for other media data. Note that in order to assess the noise resilience, you should **NOT** approximate manifold (i.e., training the model) using the noisy side channel. 
 
 ## 8. Hyper Parameters
 
@@ -365,4 +381,4 @@ See more hyper parameters (e.g., model structures) [here]().
 TBA.
 ```
 
-If you have any questions, feel free to contact me (<yyuanaq@cse.ust.hk>).
+If you have any questions, feel free to contact with me (<yyuanaq@cse.ust.hk>).
