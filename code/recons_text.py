@@ -81,8 +81,8 @@ class TextEngine(object):
         record = utils.Record()
         record_acc = utils.Record()
         start_time = time.time()
-        #progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
-        progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
+        progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
+        # progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
         for i, (trace, indexes, sent_length, prefix) in enumerate(data_loader):
             progress.update(i + 1)
             self.zero_grad()
@@ -137,8 +137,8 @@ class TextEngine(object):
         record = utils.Record()
         record_acc = utils.Record()
         start_time = time.time()
-        #progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
-        progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
+        progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
+        # progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
         with torch.no_grad():
             for i, (trace, indexes, sent_length, prefix) in enumerate(data_loader):
                 progress.update(i + 1)

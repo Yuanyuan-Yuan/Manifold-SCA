@@ -291,8 +291,8 @@ class ImageEngine(object):
             record_C_real_acc = utils.Record() # C1 for ID
             record_C_fake_acc = utils.Record()
             start_time = time.time()
-            #progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
-            progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
+            progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
+            # progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
             for i, (trace, image, prefix, ID) in enumerate(data_loader):
                 progress.update(i + 1)
                 image = image.to(self.args.device)
@@ -379,8 +379,8 @@ class ImageEngine(object):
             self.dec.train()
             record = utils.Record()
             start_time = time.time()
-            #progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
-            progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
+            progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
+            # progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
             for i, (trace, image, prefix, ID) in enumerate(data_loader):
                 progress.update(i + 1)
                 image = image.to(self.args.device)
@@ -415,8 +415,8 @@ class ImageEngine(object):
             record_G = utils.Record()
             record_D = utils.Record()
             start_time = time.time()
-            #progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
-            progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
+            progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
+            # progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
             for i, (trace, image, prefix, ID) in enumerate(data_loader):
                 progress.update(i + 1)
                 image = image.to(self.args.device)
@@ -504,8 +504,8 @@ class ImageEngine(object):
         #with torch.autograd.set_detect_anomaly(True):
         record = utils.Record()
         start_time = time.time()
-        #progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
-        progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
+        progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
+        # progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
         with torch.no_grad():
             for i, (trace, image, prefix, ID) in enumerate(data_loader):
                 progress.update(i + 1)
@@ -534,8 +534,8 @@ class ImageEngine(object):
         utils.make_path(recons_dir)
         target_dir = '%s%s/' % (self.args.target_root, sub)
         utils.make_path(target_dir)
-        # progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
-        progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
+        progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
+        # progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
         with torch.no_grad():
             for i, (trace, image, name_list) in enumerate(data_loader):
                 progress.update(i + 1)

@@ -131,8 +131,8 @@ class AudioEngine(object):
             record_C2_real_acc = utils.Record() # C2 for content
             record_C2_fake_acc = utils.Record()
             start_time = time.time()
-            #progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
-            progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
+            progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
+            # progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
             for i, (trace, image, prefix, content, ID) in enumerate(data_loader):
                 progress.update(i + 1)
                 image = image.to(self.args.device)
@@ -239,8 +239,8 @@ class AudioEngine(object):
         record_C1_fake_acc = utils.Record()
         record_C2_fake_acc = utils.Record()
         start_time = time.time()
-        #progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
-        progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
+        progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
+        # progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
         with torch.no_grad():
             for i, (trace, image, prefix, content, ID) in enumerate(data_loader):
                 progress.update(i + 1)

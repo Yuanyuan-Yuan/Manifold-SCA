@@ -84,7 +84,7 @@ class Pipeline(object):
         print('Image Grad.')
         self.set_train()
         start_time = time.time()
-        progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
+        progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
         for i, data in enumerate(data_loader):
             progress.update(i + 1)
             self.zero_grad()
@@ -110,7 +110,7 @@ class Pipeline(object):
         print('Audio Grad.')
         self.set_train()
         start_time = time.time()
-        progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
+        progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
         for i, data in enumerate(data_loader):
             progress.update(i + 1)
             self.zero_grad()
@@ -136,7 +136,7 @@ class Pipeline(object):
         print('Text Grad.')
         self.set_train()
         start_time = time.time()
-        progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
+        progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
         for i, data in enumerate(data_loader):
             progress.update(i + 1)
             self.zero_grad()
@@ -178,7 +178,7 @@ class Pipeline(object):
         for threshold in threshold_list:
             result_dic[threshold] = {}
 
-        progress = progressbar.ProgressBar(maxval=len(grad_list)).start()
+        progress = progressbar.ProgressBar(maxval=len(grad_list), widgets=utils.get_widgets()).start()
         for i, grad_name in enumerate(grad_list):
             progress.update(i + 1)
             inst_name = grad_name.split('-')[0] + '.out'

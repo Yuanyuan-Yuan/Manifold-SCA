@@ -1,7 +1,6 @@
 import time
 import numpy as np
 import progressbar
-from nltk.translate.bleu_score import corpus_bleu
 
 import torch
 import torch.nn as nn
@@ -97,7 +96,7 @@ class Pipeline(object):
                 record = utils.Record()
                 record_acc = utils.Record()
                 start_time = time.time()
-                progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
+                progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
                 for i, data in enumerate(data_loader):
                     progress.update(i + 1)
                     (trace, indexes, sent_length, *_) = data
@@ -130,7 +129,7 @@ class Pipeline(object):
                 print('----------------------------------------')
             else:
                 start_time = time.time()
-                progress = progressbar.ProgressBar(maxval=len(data_loader)).start()
+                progress = progressbar.ProgressBar(maxval=len(data_loader), widgets=utils.get_widgets()).start()
                 for i, data in enumerate(data_loader):
                     progress.update(i + 1)
                     (trace, image, name_list, *_) = data

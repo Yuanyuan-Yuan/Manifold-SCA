@@ -149,7 +149,7 @@ for sub in sub_list:
     print('File: ', len(npz_list))
     print('Total: ', len(total_npz_list))
 
-    progress = progressbar.ProgressBar(maxval=len(npz_list)).start()
+    progress = progressbar.ProgressBar(maxval=len(npz_list), widgets=widgets).start()
     for i, npz_name in enumerate(npz_list):
         progress.update(i + 1)
         
