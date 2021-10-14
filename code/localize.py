@@ -260,7 +260,9 @@ if __name__ == '__main__':
                     img_dir=args.data_path[args.dataset]['media'], 
                     npz_dir=args.data_path[args.dataset][args.side],
                     ID_path=args.data_path[args.dataset]['ID_path'],
-                    split=args.data_path[args.dataset]['split'][1], # test split
+                    split=args.data_path[args.dataset]['split'][1],
+                    trace_c=args.trace_c,
+                    trace_w=args.trace_w,
                     image_size=args.image_size,
                     side=args.side
                 )
