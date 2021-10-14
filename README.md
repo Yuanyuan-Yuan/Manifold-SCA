@@ -13,7 +13,7 @@ Extended version: TBA.
 
 ## Updates
 
-- 2021 Oct 9. Released all code and data.
+- 2021 Oct 9. Released data, code and trained models.
 
 ## Requirements
 
