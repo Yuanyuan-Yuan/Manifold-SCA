@@ -44,6 +44,18 @@ The working directory is organized as:
 
 ## Experiment
 
+### Prepare Data
+
+We already provide data and side channels in the `data` folder.
+
+You can also collect data.
+
+```bash
+cd target/pin-3.11/source/tools/ManualExamples
+python3 prep_celeba.py
+# or [prep_chest.py, prep_coco.py, prep_dialog.py, prep_sc09.py, prep_urmp.py] 
+```
+
 ### Side Channel Attack
 
 Run following scripts to approximate manifold.
@@ -65,7 +77,7 @@ You can choose `dataset` in `["CelebA", "ChestX-ray", "SC09", "Sub-URMP", "COCO"
 
 ### Localize Vulnerabilities
 
-Go to `target/pin-3.11/source/tools/ManualExamples/` and run `python3 prep_celeba.py` to prepare some instrument outputs of our pintool. The output will be saved in `data/CelebA_crop128/pin/raw/`.
+Go to `target/pin-3.11/source/tools/ManualExamples/` and run `python3 prep_celeba.py` to prepare some instrumenting outputs of our pintool. The output will be saved in `data/CelebA_crop128/pin/raw/`.
 
 Once the models have been trained, run this script.
 
