@@ -1,13 +1,13 @@
 # Build on Docker
 
-We provide a docker container [here](https://hkustconnect-my.sharepoint.com/:u:/g/personal/yyuanaq_connect_ust_hk/Eep6WIxny_hNhR3utnCBvW0BlvGTKUwUdFX_OJU7_5skfg?e=3cYBXy).
+We provide a docker container [here](https://hkustconnect-my.sharepoint.com/:u:/g/personal/yyuanaq_connect_ust_hk/EXEpJpl7VIhJmFbaXo3Th1YBjuCzO9ht2LEN0WKP3tQ_2A?e=4Fg3RB).
 
 ## Set Up
 
 Import the downloaded container.
 
 ```bash
-cat Manifold-SCA.tar | docker import - <image_name>:<tag>
+cat Manifold-SCA.tar | docker import - <image_name>
 ```
 
 Run the container.
