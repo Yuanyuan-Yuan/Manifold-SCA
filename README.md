@@ -48,7 +48,7 @@ TBA.
 
 ## 0. Output
 
-We provide data and our trained models [here](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=175GaZ).
+We provide data and our trained models [here](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=ekIFpx).
 
 Run the following scripts to produce outputs from these data samples
 
@@ -66,11 +66,11 @@ python output_noise.py --dataset="CelebA"
 
 You can choose `dataset` from `["CelebA", "ChestX-ray", "SC09", "Sub-URMP", "COCO", "DailyDialog"]`. Results will be saved in `output`.
 
-We also provide all our [outputs](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=175GaZ).
+We also provide all our [outputs](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=ekIFpx).
 
 ## 1. Datasets
 
-We provide sampels of our processed data [here](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=175GaZ).
+We provide sampels of our processed data [here](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=ekIFpx).
 
 ### CelebA
 
@@ -167,7 +167,7 @@ python prep_celeba.py --ID=id_starting_from_1
 
 to prepare data. Follow the same procedure for other datasets.
 
-We provide our collected side channel records of all datasets [here](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=175GaZ).
+We provide our collected side channel records of all datasets [here](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=ekIFpx).
 
 ### 3.2. Map Memory Addresses to Side Channels
 
@@ -247,7 +247,7 @@ python lms2audio.py --input_dir="/path/to/lms" --output_dir="/path/to/wav"
 
 If you want to use your customrized dataset, write your dataset class in `code/data_loader.py`.
 
-We also provide our trained [models](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=175GaZ).
+We also provide our trained [models](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=ekIFpx).
 
 ## 4. Program Point Localization
 
@@ -281,7 +281,7 @@ The results of media software (e.g., libjpeg) processing different data (e.g., C
 
 ## 5. Perception Blinding
 
-We provid the blinded media data [here](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=175GaZ).
+We provid the blinded media data [here](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=ekIFpx).
 
 To blind media data, go to `code` and run
 
@@ -338,7 +338,7 @@ sudo cset shield --exec python run_image.py -- {cpu_id} {segment_id}
 
 The script `run_image.py` will run `coord_image.py` using **taskset**. Note that we seperate the media data into several segments to speed up the side channel collection. The `segment_id` starts from 0. The procedure is same for other media data.
 
-We provide our logged [side channels](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=175GaZ). 
+We provide our logged [side channels](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=ekIFpx). 
 
 ### 6.2. Reconstruct Private Media Data
 
@@ -370,7 +370,7 @@ engine.inference(test_loader, "test")
 
 in `pp_image.py`. The reconstructed images will be saved in `output/CelebA_pp/recons`. Follow the same procedure for other media data.
 
-We release our [trained models]((https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=175GaZ)).
+We release our [trained models](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=ekIFpx) and all SC09 [audios](https://github.com/Yuanyuan-Yuan/Manifold-SCA/tree/main/appendix/audio) reconstructed from side channels collected by *Prime+Probe* on Intel L1 D cache.
 
 ## 7. Noise Resilience
 
