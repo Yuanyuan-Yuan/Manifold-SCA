@@ -32,6 +32,7 @@ TBA.
     pip install scipy==1.5.0
     pip install matplotlib==3.2.2
     pip install librosa==0.7.2
+    pip install progressbar
     ```
   
   Then type
@@ -43,9 +44,33 @@ TBA.
   ```
   
   
-- We also provide a docker image [here](). If you would like to build this repo from docker, see [here]() and skip the following steps.
+- If you would like to build this repo from docker, see [DOCKER](https://github.com/Yuanyuan-Yuan/Manifold-SCA/blob/main/DOCKER.md) and skip the following steps except for [6.1](https://github.com/Yuanyuan-Yuan/Manifold-SCA#61-prepare-data).
+
+## 0. Output
+
+We provide data and our trained models [here](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=175GaZ).
+
+Run the following scripts to produce outputs from these data samples
+
+```bash
+python output.py --dataset="CelebA"
+```
+
+```bash
+python output_blind.py --dataset="CelebA"
+```
+
+```bash
+python output_noise.py --dataset="CelebA"
+```
+
+You can choose `dataset` from `["CelebA", "ChestX-ray", "SC09", "Sub-URMP", "COCO", "DailyDialog"]`. Results will be saved in `output`.
+
+We also provide all our [outputs](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=175GaZ).
 
 ## 1. Datasets
+
+We provide sampels of our processed data [here](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=175GaZ).
 
 ### CelebA
 
@@ -57,7 +82,7 @@ After downloading the dataset, go to `tool`. Then run
 python crop_celeba.py --input_dir="/path/to/unzipped_images" --output_dir="/path/to/cropped_images"
 ```
 
-to crop all images to size of `128*128`. We provide several examples in `data/CelebA_crop128`.
+to crop all images to size of `128*128`. We provide several examples in `data/CelebA_crop128/image`.
 
 ### ChestX-ray
 
@@ -69,7 +94,7 @@ After downloading the dataset, go to `tool`. Then run
 python resize_chest.py --input_dir="/path/to/unzipped_images" --output_dir="/path/to/resized_images"
 ```
 
-to convert all images to JPEG format and resize them to size of `128*128`. We provide several examples in `data/ChestX-ray_jpg128`.
+to convert all images to JPEG format and resize them to size of `128*128`. We provide several examples in `data/ChestX-ray_jpg128/image`.
 
 ### SC09 & Sub-URMP
 
@@ -81,13 +106,13 @@ We process audios in the Log-amplitude of Mel Spectrum (LMS) form, which is a 2D
 python audio2lms.py --dataset="{SC09} or {Sub-URMP}" --input_dir="/path/to/audios" --output_dir="/path/to/lms"
 ```
 
-to covert all audios to their LMS representations. Several examples are provided in `data/SC09_lms` and `data/Sub-URMP_lms` respectively.
+to covert all audios to their LMS representations. Several examples are provided in `data/SC09/lms` and `data/Sub-URMP/lms` respectively.
 
 ### COCO-Caption & DailyDialog
 
-Download COCO captions from [here](https://cocodataset.org/#download). We use the `2014 Train/Val annotations`. After downloading you need to extract captions from `captions_train2014.json` and `captions_val2014.json`. We provide several examples in `data/COCO_caption/train.json` and `data/COCO_caption/val.json`.
+Download COCO captions from [here](https://cocodataset.org/#download). We use the `2014 Train/Val annotations`. After downloading you need to extract captions from `captions_train2014.json` and `captions_val2014.json`. We provide several examples in `data/COCO/text/train.json` and `data/COCO/text/val.json`.
 
-Download DailyDialog dataset from [here](http://yanran.li/dailydialog.html). After downloading you will have `dialogues_train.txt` and `dialogues_test.txt`. We suggest you store the sentences in `json` files. Several examples are given in `data/DailyDialog/train.json` and `data/DailyDialog/test.json`.
+Download DailyDialog dataset from [here](http://yanran.li/dailydialog.html). After downloading you will have `dialogues_train.txt` and `dialogues_test.txt`. We suggest you store the sentences in `json` files. Several examples are given in `data/DailyDialog/text/train.json` and `data/DailyDialog/text/test.json`.
 
 Once the sentences are prepared, you need to build the corresponding vocabulary. Go to `tool` and run
 
@@ -95,22 +120,22 @@ Once the sentences are prepared, you need to build the corresponding vocabulary.
 python build_vocab.py input_path="/path/to/sentences.json" --output_path="/path/to/vocabulary.json" --freq=minimal_word_frequency
 ```
 
-to build the vocabulary. We provide our vocabularies in `data/COCO_caption/vocab_freq5.json` and `data/DailyDialog/vocab_freq5.json`.
+to build the vocabulary. We provide our vocabularies in `data/COCO/text/vocab_freq5.json` and `data/DailyDialog/text/vocab_freq5.json`.
 
-## 2. Target Softwares
+## 2. Target Software
 
 Install [libjpeg](https://github.com/libjpeg-turbo/libjpeg-turbo), [hunspell](https://github.com/hunspell/hunspell) and [ffmpeg](https://github.com/FFmpeg/FFmpeg).
 
-We also provide the executable files of [libjpeg](), [hunspell]() and [ffmpeg]().
+We already set up the three software in [DOCKER](https://github.com/Yuanyuan-Yuan/Manifold-SCA/blob/main/DOCKER.md).
 
 
 ## 3. Side Channel Attack
 
-We analysis three common side channels, namely, cache bank, cache line and page tables.
+We analyze three common side channels, namely, cache bank, cache line and page tables.
 
 ### 3.1. Prepare Data
 
-We use [Intel Pin](https://software.intel.com/content/www/us/en/develop/articles/pin-a-dynamic-binary-instrumentation-tool.html) (Ver. 3.11) to collect the accessed memory addresses of the target software when processing media data.
+We use [Intel Pin](https://software.intel.com/content/www/us/en/develop/articles/pin-a-dynamic-binary-instrumentation-tool.html) (Ver. 3.11) to collect the accessed memory addresses of the target software when processing media data. We already set up the Pin in [DOCKER](https://github.com/Yuanyuan-Yuan/Manifold-SCA/blob/main/DOCKER.md).
 
 We provide our pintool in `pin/pintool/mem_access.cpp`. Download Pin from [here](https://software.intel.com/content/www/us/en/develop/articles/pin-a-binary-instrumentation-tool-downloads.html) and unzip it to `PIN_ROOT` (specify this path by yourself).
 
@@ -142,7 +167,7 @@ python prep_celeba.py --ID=id_starting_from_1
 
 to prepare data. Follow the same procedure for other datasets.
 
-We provide our collected side channel records of all datasets [here]().
+We provide our collected side channel records of all datasets [here](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=175GaZ).
 
 ### 3.2. Map Memory Addresses to Side Channels
 
@@ -222,6 +247,8 @@ python lms2audio.py --input_dir="/path/to/lms" --output_dir="/path/to/wav"
 
 If you want to use your customrized dataset, write your dataset class in `code/data_loader.py`.
 
+We also provide our trained [models](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=175GaZ).
+
 ## 4. Program Point Localization
 
 Once you successfully perform side channel attacks on the target softwares, you can localize the side channel vulnerabilities.
@@ -250,15 +277,11 @@ The output `.json` file will be saved in `output/CelebA_cacheline/localize`. The
 }
 ```
 
-The results of media software (e.g., libjpeg) processing different data (e.g., CelebA and ChestX-ray) are mostly consistent.
+The results of media software (e.g., libjpeg) processing different data (e.g., CelebA and ChestX-ray) are mostly consistent. We provide our localized [vulnerabilities](https://github.com/Yuanyuan-Yuan/Manifold-SCA/tree/main/appendix/vulnerability).
 
 ## 5. Perception Blinding
 
-The following figure illustrate how perception blinding is launched.
-
-*Figure*
-
-We provid the blinding masks and blinded media data [here]().
+We provid the blinded media data [here](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=175GaZ).
 
 To blind media data, go to `code` and run
 
@@ -271,6 +294,16 @@ To unblind media data, run
 ```bash
 python blind_subtract.py --meida="{image} or {audio} or {text}" --mask_weight=0.9 --mask="{mask_word} or {/path/to/mask_image_or_audio}" --input_dir="{/path/to/text.json} or {/foler/of/image_or_audio/}" --output_dir="{/path/to/text.json} or {/foler/of/image_or_audio/}"
 ```
+
+Run
+
+```bash
+python output_blind.py --dataset="CelebA"
+# or
+python output_blind.py --dataset="ChestX-ray"
+```
+
+to see reconstructed media data from side channels correspond to blinded data.
 
 ## 6. Attack with Prime+Probe
 
@@ -305,6 +338,8 @@ sudo cset shield --exec python run_image.py -- {cpu_id} {segment_id}
 
 The script `run_image.py` will run `coord_image.py` using **taskset**. Note that we seperate the media data into several segments to speed up the side channel collection. The `segment_id` starts from 0. The procedure is same for other media data.
 
+We provide our logged [side channels](https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=175GaZ). 
+
 ### 6.2. Reconstruct Private Media Data
 
 First customize the following variables in `code/data_path.json`.
@@ -329,11 +364,13 @@ python pp_image.py --exp_name="CelebA_pp" --dataset="CelebA" --cpu="intel" --cac
 to approximate the manifold. To reconstruct unknonw images from the collected cache set accesses, uncomment
 
 ```python
-engine.load_model(args.ckpt_root + "final.pth")
+engine.load_model("/path/to/model.pth")
 engine.inference(test_loader, "test")
 ```
 
 in `pp_image.py`. The reconstructed images will be saved in `output/CelebA_pp/recons`. Follow the same procedure for other media data.
+
+We release our [trained models]((https://hkustconnect-my.sharepoint.com/:f:/g/personal/yyuanaq_connect_ust_hk/Eo-muH8ZPihOkXEXKF6TQo4BUzgpGHWdV3X2n9N9B9sExg?e=175GaZ)).
 
 ## 7. Noise Resilience
 
@@ -369,16 +406,21 @@ engine.inference(test_loader, "test")
 
 to reconstruct unknown images from noisy side channel records.
 
-The procedure is same for other media data. Note that in order to assess the noise resilience, you should **NOT** approximate manifold (i.e., training the model) using the noisy side channel. 
+The procedure is same for other media data. Note that in order to assess the noise resilience, you should **NOT** approximate manifold (i.e., training the model) using the noisy side channel.
 
-## 8. Hyper Parameters
+## 8. Customization
 
-See more hyper parameters (e.g., model structures) [here]().
+All parameters are set in `code/params.py`. You can customize the hyper parameters for approximating manifold.
+
+All datasets are implemented with OOP manner in `code/data_loader.py`. You can modify the dataset class to support your onw data.
+
+All models are also implemented with OOP manner in `code/model.py`. You can build any new framework from new models.
+
 
 ## Citation
 
-```bibtex
 TBA.
-```
+<!--```bibtex
+```-->
 
 If you have any questions, feel free to contact with me (<yyuanaq@cse.ust.hk>).
