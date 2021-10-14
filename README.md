@@ -7,10 +7,6 @@ Paper link: TBA.
 
 Extended version: TBA.
 
-## License
-
-TBA.
-
 ## Note
 
 **Warning**: This repo is provided as-is and is only for research purposes. Please use it only on test systems with no sensitive data. You are responsible for protecting yourself, your data, and others from potential risks caused by this repo. 
@@ -120,7 +116,7 @@ Once the sentences are prepared, you need to build the corresponding vocabulary.
 python build_vocab.py input_path="/path/to/sentences.json" --output_path="/path/to/vocabulary.json" --freq=minimal_word_frequency
 ```
 
-to build the vocabulary. We provide our vocabularies in `data/COCO/text/vocab_freq5.json` and `data/DailyDialog/text/vocab_freq5.json`.
+to build the vocabulary. We provide our vocabularies in `data/COCO/text/word_dict_freq5.json` and `data/DailyDialog/text/word_dict_freq5.json`.
 
 ## 2. Target Software
 
@@ -177,7 +173,7 @@ We map the collected memory addresses *addr* to side channels according to the f
 |  :----:  | :----: | :----: |
 | *addr >> 2* | *addr >> 6* | *addr >> 12* |
 
-Set the following varibales in `tool/addr2side.py`.
+Set the following variables in `tool/addr2side.py`.
 - `input_dir` - Directory of collected `.npz` files recording accessed memory addresses.
 - `cachebank_dir` - Directory of converted cache bank indexes.
 - `cacheline_dir` - Directory of converted cache line indexes.
@@ -193,7 +189,7 @@ to get the side channels records. You can also speed up the progress by running 
 
 ### 3.3. Reconstruct Private Media Data
 
-You need to frist customize following data directories in `code/data_path.json`.
+You need to first customize following data directories in `code/data_path.json`.
 
 ```json
 { 
@@ -223,7 +219,7 @@ python output.py --exp_name="CelebA_cacheline" --dataset="CelebA" --side="cachel
 
 to reconstruct unknown face photos (i.e., the `test` split). The reconstructed face photos will by default be saved in `output/CelebA_cacheline/recons/`. This procedure is also same for audio and text data.
 
-We use [Face++](https://www.faceplusplus.com/) to assess the similarity of ID between reconstructed and reference face photos. The online service is free at the time of writing so you can register your own account. The set the `key` and `secret` variables in `code/face_similarity.py` and run
+We use [Face++](https://www.faceplusplus.com/) to assess the similarity of IDs between reconstructed and reference face photos. The online service is free at the time of writing, so you can register your own account. Then set the `key` and `secret` variables in `code/face_similarity.py` and run
 
 ```bash
 python face_similarity.py --recons_dir="../output/CelebA_cacheline/recons/" --target_dir="../output/CelebA_cacheline/target/" --output_path="../output/CelebA_cacheline/simillarity.txt"
@@ -303,11 +299,11 @@ python output_blind.py --dataset="CelebA"
 python output_blind.py --dataset="ChestX-ray"
 ```
 
-to see reconstructed media data from side channels correspond to blinded data.
+to see reconstructed media data from side channels corresponding to blinded data.
 
 ## 6. Attack with Prime+Probe
 
-We use [Mastik](https://cs.adelaide.edu.au/~yval/Mastik/) (Ver. 0.02) to launch Prime+Probe on L1 cache of Intel Xeon CPU and AMD Ryzen CPU. We provide our scripts in `prime_probe/Mastik`. After downloading Mastik, you can put our scripts in the `demo` folder and run `make` in the root folder to compile our scripts. We highly recommend you to set the cache miss threshold in these scripts according to your machines. 
+We use [Mastik](https://cs.adelaide.edu.au/~yval/Mastik/) (Ver. 0.02) to launch Prime+Probe on L1 cache of Intel Xeon CPU and AMD Ryzen CPU. We provide our scripts in `prime_probe/Mastik`. After downloading Mastik, you can put our scripts in the `demo` folder and run `make` in the root folder to compile our scripts. We highly recommend you to *set the cache miss threshold* in these scripts according to your machines. 
 
 The *Prime+Probe* is launched in Linux OS. You need first to install **taskset** and **cpuset**.
 
@@ -400,27 +396,27 @@ test_dataset = NoisyRealSideDataset(args, split=args.data_path[args.dataset]["sp
 and uncomment
 
 ```python
-engine.load_model(args.ckpt_root + "final.pth")
+engine.load_model("/path/to/model.pth")
 engine.inference(test_loader, "test")
 ```
 
 to reconstruct unknown images from noisy side channel records.
 
-The procedure is same for other media data. Note that in order to assess the noise resilience, you should **NOT** approximate manifold (i.e., training the model) using the noisy side channel.
+The procedure is same for other media data. Note that in order to assess the noise resilience, you should **NOT** approximate manifold (i.e., train the model) using the noisy side channel.
 
 ## 8. Customization
 
-All parameters are set in `code/params.py`. You can customize the hyper parameters for approximating manifold.
+All parameters are set in `code/params.py`. You can customize the hyper-parameters for approximating manifold.
 
-All datasets are implemented with OOP manner in `code/data_loader.py`. You can modify the dataset class to support your onw data.
+All datasets are implemented with OOP manner in `code/data_loader.py`. You can modify the dataset class to support your own data.
 
-All models are also implemented with OOP manner in `code/model.py`. You can build any new framework from new models.
+All models are also implemented with OOP manner in `code/model.py`. You can build a new framework from new models.
 
 
 ## Citation
 
 TBA.
-<!--```bibtex
-```-->
+<!--```bibtex--->
+<!--```-->
 
 If you have any questions, feel free to contact with me (<yyuanaq@cse.ust.hk>).

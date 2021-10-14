@@ -28,7 +28,7 @@ The working directory is organized as:
 📂Manifold-SCA
  ┣📂blinded_data # blinded data
  ┃ ┗📂{dataset_name}
- ┣📂code # implmentation of framework
+ ┣📂code # implmentation of our framework
  ┣📂data # processed data and logged side channels
  ┃ ┗📂{dataset_name}
  ┃   ┣📂{media_data}
@@ -37,7 +37,7 @@ The working directory is organized as:
  ┣📂models # our trained models
  ┣📂output # experiment outputs will be save here
  ┣📂pin # our pintool and scripts for collecting side channel
- ┣📂prime_probe # scripts for launching Prime_Probe
+ ┣📂prime_probe # scripts for launching Prime+Probe
  ┣📂target # compiled target software
  ┗📂tool # scripts for data processing
 ```
@@ -48,7 +48,7 @@ The working directory is organized as:
 
 We already provide data and side channels in the `data` folder.
 
-You can also collect data.
+You can also collect data using our scripts.
 
 ```bash
 cd target/pin-3.11/source/tools/ManualExamples
