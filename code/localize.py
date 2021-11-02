@@ -180,7 +180,6 @@ class Pipeline(object):
         progress = progressbar.ProgressBar(maxval=len(inst_list), widgets=utils.get_widgets()).start()
         for i, inst_name in enumerate(inst_list):
             progress.update(i + 1)
-            print(inst_name)
             grad_name = inst_name.split('.')[0] + '-grad.npz'
             # inst_name = grad_name.split('-')[0] + '.out'
             grad = np.load(grad_dir + grad_name)['arr_0']
@@ -321,7 +320,7 @@ if __name__ == '__main__':
 
     model_path = ROOT + '/models/pin/CelebA_cacheline_pre/final.pth'
     # if you want to use your trained model,
-    # comment the this line and uncomment the
+    # comment the above line and uncomment the
     # following line.
 
     # model_path = (args.ckpt_root + 'final.pth')
