@@ -1,7 +1,6 @@
 import time
 import numpy as np
 import progressbar
-from nltk.translate.bleu_score import corpus_bleu
 
 import torch
 import torch.nn as nn
@@ -29,7 +28,7 @@ class Pipeline(object):
         if self.args.media == 'image':
             self.enc = models.__dict__['attn_trace_encoder_256'](dim=128, nc=6)
             self.dec = models.__dict__['ResDecoder128'](dim=128, nc=3)
-        elif self.args.media == 'audio'
+        elif self.args.media == 'audio':
             self.enc = models.__dict__['attn_trace_encoder_512'](dim=256, nc=8)
             self.dec = models.__dict__['audio_decoder_128'](dim=256, nc=1, out_s=44)
         elif self.args.media == 'text':
@@ -174,14 +173,16 @@ class Pipeline(object):
         inst_list = sorted(os.listdir(inst_dir))
 
         result_dic = {}
-        threshold_list = [0.6, 0.8, 0.9]
+        threshold_list = [0.4, 0.5, 0.6, 0.8, 0.9]
         for threshold in threshold_list:
             result_dic[threshold] = {}
 
-        progress = progressbar.ProgressBar(maxval=len(grad_list), widgets=utils.get_widgets()).start()
-        for i, grad_name in enumerate(grad_list):
+        progress = progressbar.ProgressBar(maxval=len(inst_list), widgets=utils.get_widgets()).start()
+        for i, inst_name in enumerate(inst_list):
             progress.update(i + 1)
-            inst_name = grad_name.split('-')[0] + '.out'
+            print(inst_name)
+            grad_name = inst_name.split('.')[0] + '-grad.npz'
+            # inst_name = grad_name.split('-')[0] + '.out'
             grad = np.load(grad_dir + grad_name)['arr_0']
             with open(inst_dir + inst_name, 'r') as f:
                 inst = f.readlines()
@@ -217,7 +218,11 @@ if __name__ == '__main__':
     import torch.nn.functional as F
 
     import utils
+    from params import Params
     from data_loader import *
+
+    p = Params()
+    args = p.parse()
 
     dataset2media = {
         'CelebA': 'image',
@@ -228,10 +233,31 @@ if __name__ == '__main__':
         'DailyDialog': 'text'
     }
 
-    p = Params()
-    args = p.parse()
+    media2trace = {
+        'image': (6, 256),
+        'audio': (8, 512),
+        'text': (6, 128)
+    }
 
-    args.media = dataset2media[args.dataset]
+    media2nz = {
+        'image': 128,
+        'audio': 256,
+        'text': 512
+    }
+
+    media = dataset2media[args.dataset]
+    args.media = media
+    (args.trace_c, args.trace_w) = media2trace[media]
+    args.nz = media2nz[media]
+    args.lms_w = 128
+    if args.dataset == 'SC09':
+        args.lms_h = 44
+    elif args.dataset == 'Sub-URMP':
+        args.lms_h = 22
+
+    ROOT = os.environ.get('MANIFOLD_SCA')
+    if ROOT is None:
+        ROOT = '..'
 
     print(args.exp_name)
 
@@ -293,7 +319,12 @@ if __name__ == '__main__':
     media_loader = loader.get_loader(media_dataset, False)
     engine = Pipeline(args)
 
-    model_path = (args.ckpt_root + 'final.pth')
+    model_path = ROOT + '/models/pin/CelebA_cacheline_pre/final.pth'
+    # if you want to use your trained model,
+    # comment the this line and uncomment the
+    # following line.
+
+    # model_path = (args.ckpt_root + 'final.pth')
     engine.load_model(model_path)
 
     engine.image_localize(media_loader)
@@ -302,5 +333,5 @@ if __name__ == '__main__':
 
     engine.pinpoint(
             grad_dir=args.grad_root,
-            inst_dir=args.data_path[args.dataset]['pin']
+            inst_dir=args.data_path[args.dataset]['pin'] + 'test/'
         )
