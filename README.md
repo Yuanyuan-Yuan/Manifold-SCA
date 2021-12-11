@@ -3,9 +3,9 @@
 
 Official implementation of **USENIX Security 2022** paper: *Automated Side Channel Analysis of Media Software with Manifold Learning*.
 
-Paper link: TBA. 
+Paper link: https://www.usenix.org/conference/usenixsecurity22/presentation/yuan 
 
-Extended version: TBA.
+Extended version: https://arxiv.org/pdf/2112.04947.pdf
 
 ## Note
 
