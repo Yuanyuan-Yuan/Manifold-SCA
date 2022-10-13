@@ -12,6 +12,8 @@ Extended version: https://arxiv.org/pdf/2112.04947.pdf
 
 Artifact appendix: see [here](https://github.com/Yuanyuan-Yuan/Manifold-SCA/blob/main/files/artifact.pdf)
 
+Slides: see [here](https://github.com/Yuanyuan-Yuan/Manifold-SCA/blob/main/files/slides.pdf)
+
 ## Note
 
 **Warning**: This repo is provided as-is and is only for research purposes. Please use it only on test systems with no sensitive data. You are responsible for protecting yourself, your data, and others from potential risks caused by this repo. 
