@@ -10,7 +10,7 @@ Paper link: https://www.usenix.org/conference/usenixsecurity22/presentation/yuan
 
 Extended version: https://arxiv.org/pdf/2112.04947.pdf
 
-Artifact paper: https://github.com/Yuanyuan-Yuan/Manifold-SCA/blob/main/files/artifact.pdf
+Artifact appendix: see [here](https://github.com/Yuanyuan-Yuan/Manifold-SCA/blob/main/files/artifact.pdf)
 
 ## Note
 
