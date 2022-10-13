@@ -3,9 +3,14 @@
 
 Official implementation of **USENIX Security 2022** paper: *Automated Side Channel Analysis of Media Software with Manifold Learning*.
 
+This artifact passed the artifact evaluation of USENIX Security 2022 and got the
+**Available**, **Functional**, and **Reproduced** Badges.
+
 Paper link: https://www.usenix.org/conference/usenixsecurity22/presentation/yuan 
 
 Extended version: https://arxiv.org/pdf/2112.04947.pdf
+
+Artifact paper: https://github.com/Yuanyuan-Yuan/Manifold-SCA/blob/main/files/artifact.pdf
 
 ## Note
 
@@ -13,7 +18,9 @@ Extended version: https://arxiv.org/pdf/2112.04947.pdf
 
 ## Updates
 
-- 2021 Oct 9. Released data, code and trained models.
+- 13 Oct. 2022. Update the artifact paper and citation bib.
+
+- 9 Oct. 2021. Released data, code and trained models.
 
 ## Requirements
 
