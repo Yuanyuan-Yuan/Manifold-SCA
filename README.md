@@ -39,7 +39,6 @@ Extended version: https://arxiv.org/pdf/2112.04947.pdf
   export MANIFOLD_SCA=$PWD
   ```
   
-  
 - If you would like to build this repo from docker, see [DOCKER](https://github.com/Yuanyuan-Yuan/Manifold-SCA/blob/main/DOCKER.md) and skip the following steps except for [6.1](https://github.com/Yuanyuan-Yuan/Manifold-SCA#61-prepare-data).
 
 ## 0. Output
@@ -303,7 +302,7 @@ to see reconstructed media data from side channels corresponding to blinded data
 
 ## 6. Attack with Prime+Probe
 
-We use [Mastik](https://cs.adelaide.edu.au/~yval/Mastik/) (Ver. 0.02) to launch Prime+Probe on L1 cache of Intel Xeon CPU and AMD Ryzen CPU. We provide our scripts in `prime_probe/Mastik`. After downloading Mastik, you can put our scripts in the `demo` folder and run `make` in the root folder to compile our scripts. We highly recommend you to *set the cache miss threshold* in these scripts according to your machines. 
+We use [Mastik](https://cs.adelaide.edu.au/~yval/Mastik/) (Ver. 0.02) to launch Prime+Probe on L1 cache of Intel Xeon CPU and AMD Ryzen CPU. We provide our scripts in `prime_probe/Mastik/demo`. After downloading Mastik, you can put our scripts into the `demo` folder and run `make` in the root folder to compile our scripts. We highly recommend you to *set the cache miss threshold* in these scripts according to your machines. 
 
 The *Prime+Probe* is launched in Linux OS. You need first to install **taskset** and **cpuset**.
 
@@ -412,11 +411,24 @@ All datasets are implemented with OOP manner in `code/data_loader.py`. You can m
 
 All models are also implemented with OOP manner in `code/model.py`. You can build a new framework from new models.
 
+## Copyrights
+
+The Prime+Probe scripts in `prime_probe/Mastik/demo` are implemented based on [Mastik](https://cs.adelaide.edu.au/~yval/Mastik/), so you should follow the license of Mastik.
+
+For all other original parts, we allow free distribution of the code under the MIT license.
+
 
 ## Citation
 
-TBA.
-<!--```bibtex--->
-<!--```-->
+```bibtex
+@inproceedings{yuan2022automated,
+  title={Automated side channel analysis of media software with manifold learning},
+  author={Yuan, Yuanyuan and Pang, Qi and Wang, Shuai},
+  booktitle={31st USENIX Security Symposium (USENIX Security 22)},
+  pages={4419--4436},
+  year={2022}
+}
+```
 
 If you have any questions, feel free to contact with me (<yyuanaq@cse.ust.hk>).
+
